@@ -35,12 +35,12 @@ jobs:
           # 获取所有分支
           git fetch upstream
           
-          # 确保在 main 分支
-          git checkout main
+          # 确保在 master 分支
+          git checkout master
           
-          git merge upstream/main
+          git merge upstream/master
           
-          git push origin main
+          git push origin master
           
           echo "✅ 同步完成！现在您的 fork 与上游完全一致，没有 'ahead' 提交"
           exit 1
