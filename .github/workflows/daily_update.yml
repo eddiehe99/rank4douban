@@ -1,6 +1,7 @@
 name: Daily Update
 
 on:
+  workflow_dispatch:
   schedule:
     - cron:  '0 12 */1 * *'
 
@@ -12,14 +13,27 @@ jobs:
     steps:
     - uses: actions/checkout@v6
 
-    - name: Set up Python 3.13
-      uses: actions/setup-python@v6
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v5
       with:
-        python-version: '3.13'
+        python-version: '3.11'
         cache: 'pip'
 
     - name: Install dependencies
       run: pip install -r requirements.txt
+
+    # 安装 Chrome 和 ChromeDriver（GitHub Actions 必备）
+    - name: Installed package list
+      run: apt list --installed
+
+    - name: Remove Chrome
+      run: sudo apt purge google-chrome-stable
+
+    - name: Remove default Chromium
+      run: sudo apt purge chromium-browser
+
+    - name: Install a new Chromium
+      run: sudo apt install -y chromium-browser
 
     - name: Run task
       run: |
