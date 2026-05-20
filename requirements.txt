@@ -4,3 +4,4 @@ requests
 cloudscraper
 selenium
 webdriver-manager
+idna>=3.15 # not directly required, pinned by Snyk to avoid a vulnerability
